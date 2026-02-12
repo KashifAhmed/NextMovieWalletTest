@@ -37,6 +37,7 @@ Clone your repo to the same path as `APP_DIR`, then set `.env`.
 
 - Push to `main`
 - CI runs lint + build (tests are intentionally not run on server)
+- CI can run unit tests in GitHub Actions; server does not run tests
 - If CI passes, deploy workflow SSHs into EC2
 - Server script runs:
   - `git pull`

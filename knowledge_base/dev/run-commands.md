@@ -59,7 +59,14 @@ npm run lint
 npm run build
 ```
 
-## 7) Optional API quick tests (new terminal)
+## 7) Unit tests (local only)
+
+```bash
+npm run test
+npm run test:coverage
+```
+
+## 8) Optional API quick tests (new terminal)
 
 ```bash
 curl -X POST http://localhost:3000/api/movies \
@@ -96,13 +103,13 @@ curl -X POST http://localhost:3000/api/auth/signin \
   -c cookies.txt
 ```
 
-## 8) Stop database container (when needed)
+## 9) Stop database container (when needed)
 
 ```bash
 docker compose down
 ```
 
-## 9) Configure Nginx + SSL on EC2
+## 10) Configure Nginx + SSL on EC2
 
 ```bash
 chmod +x scripts/setup_nginx_ssl.sh
