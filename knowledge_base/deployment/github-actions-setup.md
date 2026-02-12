@@ -36,7 +36,7 @@ Clone your repo to the same path as `APP_DIR`, then set `.env`.
 ## 3) How deployment works
 
 - Push to `main`
-- CI runs lint + build
+- CI runs lint + build (tests are intentionally not run on server)
 - If CI passes, deploy workflow SSHs into EC2
 - Server script runs:
   - `git pull`
@@ -45,8 +45,15 @@ Clone your repo to the same path as `APP_DIR`, then set `.env`.
   - `prisma migrate deploy`
   - `npm run build`
   - restart app with PM2
+  - `/api/health` check
+  - automatic rollback to previous commit if health check fails
 
-## 4) First manual start (recommended once)
+## 4) Recommended GitHub environment protection
+
+Create a GitHub Environment named `production` and set required reviewers.
+The deploy workflow already targets this environment.
+
+## 5) First manual start (recommended once)
 
 ```bash
 cd /home/ubuntu/movie-wallet

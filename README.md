@@ -20,7 +20,7 @@ This is a Next.js movie manager app with integrated frontend + backend.
 
 ## Getting Started
 
-Run commands from `RUN_COMMANDS.md`.
+Run commands from `knowledge_base/dev/run-commands.md`.
 
 Main command:
 
@@ -33,5 +33,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Notes
 
 - Configure environment variables in `.env` (see `.env.example`).
-- Run Prisma migration commands from `RUN_COMMANDS.md` before starting.
-- CI/CD setup guide: `GITHUB_ACTIONS_SETUP.md`.
+- Run Prisma migration commands from `knowledge_base/dev/run-commands.md` before starting.
+- CI/CD setup guide: `knowledge_base/deployment/github-actions-setup.md`.
+- Deployment docs index: `knowledge_base/README.md`.

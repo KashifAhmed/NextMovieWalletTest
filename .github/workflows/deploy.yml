@@ -17,6 +17,9 @@ jobs:
       github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment: production
+    permissions:
+      contents: read
 
     steps:
       - name: Deploy over SSH
@@ -33,6 +36,9 @@ jobs:
             export APP_DIR="${{ secrets.APP_DIR }}"
             export APP_NAME="movie-wallet"
             export BRANCH="main"
+            export HEALTHCHECK_URL="http://127.0.0.1:3000/api/health"
+            export HEALTHCHECK_RETRIES="20"
+            export HEALTHCHECK_DELAY_SECONDS="3"
             cd "$APP_DIR"
             chmod +x scripts/deploy_on_server.sh
             ./scripts/deploy_on_server.sh
