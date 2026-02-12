@@ -3,7 +3,10 @@ import { verifyAuthToken, type JwtPayload } from "@/features/auth/server/jwt";
 
 export const AUTH_COOKIE_NAME = "movie_wallet_auth";
 
-function isProduction() {
+function shouldUseSecureCookie() {
+  const override = process.env.AUTH_COOKIE_SECURE;
+  if (override === "true") return true;
+  if (override === "false") return false;
   return process.env.NODE_ENV === "production";
 }
 
@@ -12,7 +15,7 @@ export function setAuthCookie(response: NextResponse, token: string) {
     name: AUTH_COOKIE_NAME,
     value: token,
     httpOnly: true,
-    secure: isProduction(),
+    secure: shouldUseSecureCookie(),
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
@@ -24,7 +27,7 @@ export function clearAuthCookie(response: NextResponse) {
     name: AUTH_COOKIE_NAME,
     value: "",
     httpOnly: true,
-    secure: isProduction(),
+    secure: shouldUseSecureCookie(),
     sameSite: "lax",
     path: "/",
     maxAge: 0,
