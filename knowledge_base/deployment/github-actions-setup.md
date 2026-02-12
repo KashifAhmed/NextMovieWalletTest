@@ -41,7 +41,7 @@ Clone your repo to the same path as `APP_DIR`, then set `.env`.
 - If CI passes, deploy workflow SSHs into EC2
 - Server script runs:
   - `git pull`
-  - `npm ci`
+  - `yarn install --frozen-lockfile`
   - `prisma generate`
   - `prisma migrate deploy`
   - `npm run build`
@@ -58,7 +58,7 @@ The deploy workflow already targets this environment.
 
 ```bash
 cd /home/ubuntu/movie-wallet
-npm ci
+yarn install --frozen-lockfile
 npx prisma generate
 npx prisma migrate deploy
 npm run build

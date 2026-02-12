@@ -20,7 +20,7 @@ echo "Previous commit: ${PREV_SHA}"
 rollback() {
   echo "Deployment failed. Rolling back to ${PREV_SHA}..."
   git reset --hard "${PREV_SHA}"
-  npm ci
+  yarn install --frozen-lockfile
   npx prisma generate
   npm run build
   pm2 restart "${APP_NAME}" --update-env || true
@@ -32,7 +32,7 @@ if ! git fetch --all --prune || ! git checkout "${BRANCH}" || ! git pull --ff-on
   exit 1
 fi
 
-if ! npm ci || ! npx prisma generate || ! npx prisma migrate deploy || ! npm run build; then
+if ! yarn install --frozen-lockfile || ! npx prisma generate || ! npx prisma migrate deploy || ! npm run build; then
   rollback
   exit 1
 fi

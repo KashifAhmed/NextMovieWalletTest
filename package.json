@@ -12,7 +12,8 @@
     "test:coverage": "vitest run --coverage",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "ci": "yarn install --frozen-lockfile"
   },
   "dependencies": {
     "@prisma/client": "^6.16.3",
